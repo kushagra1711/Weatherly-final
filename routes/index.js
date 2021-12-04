@@ -86,7 +86,7 @@ router.get('/profile', function (req, res, next) {
             res.redirect('/');
         } else {
             //console.log("found");
-            return res.render('data', { "name": data.username, "email": data.email });
+            return res.render('data.ejs', { "name": data.username, "email": data.email });
         }
     });
 });
