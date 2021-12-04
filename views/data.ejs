@@ -55,6 +55,8 @@
                 </div>
 
                 <div>
+                    <%= name %>
+                    <%= email %>
                     <img
                         src="assets/hamburger.png"
                         align="right"
@@ -70,8 +72,10 @@
             <div class="cont" align="center">
                 <div class="input">
                     <!-- <form action="location-input"> -->
-                    <input class="textinp textinp-width" type="text" placeholder="  Enter Location..." />
-                    <button class="submit" onclick="exe()">
+                    <form action="/api/storeCity" method="post">
+                        <input class="textinp textinp-width" type="text" placeholder="  Enter Location..." name="city" />
+                        <button class="submit" onclick="exe()">
+                    </form>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="22"

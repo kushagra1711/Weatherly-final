@@ -2,12 +2,12 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 
-router.get('/', function (req, res, next) {
+router.get('/', (req, res, next) => {
     return res.render('index.ejs');
 });
 
 
-router.post('/', function (req, res, next) {
+router.post('/', (req, res, next) => {
     console.log(req.body);
     var personInfo = req.body;
 
@@ -17,9 +17,9 @@ router.post('/', function (req, res, next) {
     } else {
         if (personInfo.password == personInfo.passwordConf) {
 
-            User.findOne({ email: personInfo.email }, function (err, data) {
+            User.findOne({ email: personInfo.email }, (err, data) => {
                 if (!data) {
-                    User.findOne({}, function (err, data) {
+                    User.findOne({}, (err, data) => {
 
                         if (data) {
                             console.log("if");
@@ -30,10 +30,11 @@ router.post('/', function (req, res, next) {
                             email: personInfo.email,
                             username: personInfo.username,
                             password: personInfo.password,
-                            passwordConf: personInfo.passwordConf
+                            passwordConf: personInfo.passwordConf,
+                            cities: ""
                         });
 
-                        newPerson.save(function (err, Person) {
+                        newPerson.save((err, Person) => {
                             if (err)
                                 console.log(err);
                             else
@@ -53,13 +54,13 @@ router.post('/', function (req, res, next) {
     }
 });
 
-router.get('/login', function (req, res, next) {
+router.get('/login', (req, res, next) => {
     return res.render('login.ejs');
 });
 
-router.post('/login', function (req, res, next) {
+router.post('/login', (req, res, next) => {
     //console.log(req.body);
-    User.findOne({ email: req.body.email }, function (err, data) {
+    User.findOne({ email: req.body.email }, (err, data) => {
         if (data) {
 
             if (data.password == req.body.password) {
@@ -77,9 +78,9 @@ router.post('/login', function (req, res, next) {
     });
 });
 
-router.get('/profile', function (req, res, next) {
+router.get('/profile', (req, res, next) => {
     console.log("profile");
-    User.findOne({ _id: req.session.userId }, function (err, data) {
+    User.findOne({ _id: req.session.userId }, (err, data) => {
         console.log("data");
         console.log(data);
         if (!data) {
@@ -91,11 +92,11 @@ router.get('/profile', function (req, res, next) {
     });
 });
 
-router.get('/logout', function (req, res, next) {
+router.get('/logout', (req, res, next) => {
     console.log("logout")
     if (req.session) {
         // delete session object
-        req.session.destroy(function (err) {
+        req.session.destroy((err) => {
             if (err) {
                 return next(err);
             } else {
@@ -105,14 +106,14 @@ router.get('/logout', function (req, res, next) {
     }
 });
 
-router.get('/forgetpass', function (req, res, next) {
+router.get('/forgetpass', (req, res, next) => {
     res.render("forget.ejs");
 });
 
-router.post('/forgetpass', function (req, res, next) {
+router.post('/forgetpass', (req, res, next) => {
     //console.log('req.body');
     //console.log(req.body);
-    User.findOne({ email: req.body.email }, function (err, data) {
+    User.findOne({ email: req.body.email }, (err, data) => {
         console.log(data);
         if (!data) {
             res.send({ "Success": "This Email Is not regestered!" });
@@ -122,7 +123,7 @@ router.post('/forgetpass', function (req, res, next) {
                 data.password = req.body.password;
                 data.passwordConf = req.body.passwordConf;
 
-                data.save(function (err, Person) {
+                data.save((err, Person) => {
                     if (err)
                         console.log(err);
                     else
@@ -134,7 +135,35 @@ router.post('/forgetpass', function (req, res, next) {
             }
         }
     });
+});
 
+// router.get("/api/storeData", (req, res, next) => {
+
+// });
+router.post("/api/storeCity", (req, res, next) => {
+    if (req.session && req.session.userId) {
+        User.findOne({ _id: req.session.userId }, (err, data) => {
+            if (err) {
+                console.log("[ERROR] " + err);
+                return next(err);
+            } else {
+                if (data.cities) {
+                    data.cities = data.cities + "$" + req.body.city;
+                } else {
+                    data.cities = req.body.city;
+                }
+                data.save((err, Person) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log("Success");
+                    }
+                });
+                console.log(data.cities);
+                // res.send({ "name": data.username, "email": data.email, "cities": data.cities });
+            }
+        });
+    }
 });
 
 module.exports = router;
