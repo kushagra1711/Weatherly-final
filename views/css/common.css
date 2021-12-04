@@ -1,0 +1,259 @@
+@import "animations.css";
+
+* {
+    margin: 0px;
+    /* background-image: -moz-linear-gradient(to bottom,#02c39a ,#F0F3BD); */
+}
+
+/* body{
+    background-image: url('background.png');
+    background-size: 100%;
+    align-items: center;
+    background-repeat: no-repeat;   
+} */
+
+:root {
+    --background: #ffffff;
+    --text: #040404;
+
+    --red: #ec4e20;
+    --orange: #ff9505;
+    --yellowish-orange: #f7cb15;
+    --yellow: #fbff12;
+
+    --bright-blue: #3777ff;
+    --blue: #266dd3;
+    --dark-blue: #016fb9;
+}
+
+.textinp {
+    height: 8%;
+    opacity: 30%;
+    border-radius: 50px;
+    font-size: 2rem;
+    font-family: "Lato", sans-serif;
+    border-color: var(--orange);
+    padding-left: 20px;
+    color: var(--text);
+}
+
+.textinp-width {
+    width: 50%;
+}
+
+.background {
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.main {
+    height: 100vh;
+}
+
+.navh {
+    display: flex;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(24, 24, 24);
+    z-index: 1000;
+}
+
+.overlay h1 {
+    position:absolute;
+    text-align: center;
+    color: var(--background);
+    font-size: 7rem;
+    top: 30%;
+    left:18%;
+    font-family: "Helvetica";
+    letter-spacing: 4px;
+    animation: zoomIn 3s ease infinite;
+}
+
+.head-div {
+    display: flex;
+    justify-content: space-between;
+    height: 8%;
+    vertical-align: middle;
+    width: 100%;
+    opacity: 100%;
+}
+
+.head-div p {
+    padding: 15px;
+}
+
+.logo {
+    height: 65px;
+    display: inline;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.logoname {
+    font-family: "Lato", sans-serif;
+    display: inline;
+    font-size: 2rem;
+    font-weight: 500;
+    vertical-align: 1.3rem;
+    padding-left: 15px;
+}
+
+.mainbg {
+    width: 100%;
+    position: absolute;
+}
+
+.userlogo {
+    height: 65px;
+    display: inline;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.footer {
+    background-color: var(--orange);
+    color: var(--background);
+    position: fixed;
+    margin-bottom: 0px;
+    bottom: 0;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+}
+
+.monospace-text {
+    font-family: JetBrains Mono, monospace;
+}
+
+.hamburgerlogo {
+    height: 35px;
+    display: inline;
+    margin-top: 20px;
+    margin-right: 20px;
+    z-index: 0;
+}
+
+.overlayLister {
+    position: fixed;
+    display: none;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    opacity: 180%;
+
+    -webkit-animation: zoomIn1 1s ease;
+    -moz-animation: zoomIn1 1s ease;
+    -o-animation: zoomIn1 1s ease;
+    animation: zoomIn1 1s ease;
+}
+.overlayLister2 {
+    width: 60%;
+    height: 60%;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    opacity: 92%;
+    background-color: var(--background);
+    border: 2px solid var(--orange);
+    text-align: left;
+    cursor: pointer;
+    border-radius: 25px;
+    -webkit-animation: fadeInFromNone 1s ease;
+    -moz-animation: fadeInFromNone 1s ease;
+    -o-animation: fadeInFromNone 1s ease;
+    animation: fadeInFromNone 1s ease;
+}
+
+.jugaad-button {
+    position: absolute;
+    right: 0px;
+    opacity: 0%;
+}
+
+.opacity-hack {
+    opacity: 60%;
+}
+
+.logo-button a {
+    text-decoration: none;
+}
+
+#cross {
+    position: absolute;
+    top: 10%;
+    left: 10px;
+    height: 64px;
+    cursor: pointer;
+}
+
+#text {
+    position: absolute;
+    
+    top: 50%;
+    left: 40%;
+    font-size: 1.5rem;
+    font-family: "lato", sans-serif;
+    color: var(--text);
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text);
+}
+
+a:hover {
+    color: var(--red) !important;
+}
+
+li > h1 {
+    padding-bottom: 20px;
+}
+
+
+@media screen and (max-width: 995px) {
+    #text{
+        font-size:1rem;
+    }
+}
+
+@media screen and (max-width: 664px) {
+    .textinp {
+        font-size: 1.2rem;
+    }
+
+    .overlay h1 {
+        font-size: 5rem;
+    }
+}
+
+@media screen and (max-width: 345px) {
+    .head {
+        height: 50px;
+        font-size: 12rem;
+        padding-left: 0;
+    }
+    .logoname {
+        vertical-align: 4mm;
+    }
+    .textinp {
+        font-size: 0.75rem;
+    }
+    .submit {
+        font-size: 0.75rem;
+    }
+
+    .overlay h1 {
+        font-size: 3rem;
+    }
+}

@@ -1,0 +1,75 @@
+@import "common.css";
+
+.about-cont {
+    display: block;
+    text-align: center;
+
+    font-family: "Lato", sans-serif;
+
+    /* padding: 20px 10% 20px 10%; */
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+
+.about-div {
+    padding-top: 3%;
+    padding-bottom: 2%;
+}
+
+.technologies-div {
+    display: block;
+    text-align: center;
+}
+
+.html5-li {
+    width: 10%;
+
+    opacity: 80%;
+
+    padding-top: 2%;
+    padding-right: 5%;
+}
+
+.css3-li {
+    width: 10%;
+
+    opacity: 80%;
+
+    padding-top: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.js-li {
+    width: 10%;
+
+    opacity: 80%;
+
+    padding-top: 2%;
+    padding-left: 5%;
+}
+
+.about-section {
+    display: flex;
+    justify-content: center;
+}
+
+.about-section section > div {
+    flex-basis: 50%;
+}
+
+.frameworks-div {
+    padding-top: 2%;
+    
+    display: block;
+    text-align: left;
+}
+
+.contributors-div {
+    padding-top: 2%;
+    padding-left: 10%;
+    display: block;
+    text-align: left;
+}

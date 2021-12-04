@@ -1,0 +1,46 @@
+@import "common.css";
+
+.working-code {
+    font-family: JetBrains Mono, monospace;
+    width: min-content;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+.working-cont {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+
+    font-family: "Lato", sans-serif;
+
+    width: 80%;
+    height: 80%;
+
+    margin-top: 2%;
+    margin-left: 10%;
+}
+
+.working-cont p {
+    width: 100%;
+}
+
+.working-cont pre {
+    width: 100%;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+@media screen and (max-width: 664px) {
+    .working-code {
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width: 345px) {
+    .working-code {
+        font-size: 0.75rem;
+    }
+}

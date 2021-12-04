@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="css/about.css" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap" rel="stylesheet" />
+
+        <link rel="icon" href="assets/logo.ico" />
+
+        <title>Weatherly</title>
+    </head>
+
+    <body>
+        <div class="overlayLister">
+            <button class="hamburgerlogo head jugaad-button" onclick="onk()">asdf</button>
+            <!-- <img src="assets/x.png" onclick="offk()" id="cross" alt="" /> -->
+            <div class="overlayLister2">
+                <ul id="text">
+                    <li>
+                        <h1><a href="index.html">Home</a></h1>
+                    </li>
+                    <li>
+                        <h1><a href="iframe.html">Weather Map</a></h1>
+                    </li>
+                    <li>
+                        <h1><a href="about.html">About Project</a></h1>
+                    </li>
+                    <li>
+                        <h1><a href="working.html">How it works</a></h1>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <header>
+            <div class="head-div">
+                <div>
+                    <a class="logo-button" href="index.html">
+                        <img class="logo" src="assets/logo.png" alt="" />
+                        <p class="logoname">Weatherly</p>
+                    </a>
+                </div>
+
+                <div>
+                    <img
+                        src="assets/hamburger.png"
+                        align="right"
+                        class="hamburgerlogo head"
+                        id="hamburger"
+                        onclick="onk()"
+                    />
+                </div>
+            </div>
+        </header>
+
+        <main class="about-cont">
+            <p class="textinp opacity-hack">
+                Weatherly is an application created for showing weather details of an area with a cohesive, easy to
+                understand user interface. It is built upon the
+                <span class="monospace-text">openweathermap</span> weather API.
+            </p>
+
+            <div class="technologies-div">
+                <h3 class="textinp about-div opacity-hack">Technologies Used</h3>
+                <img class="html5-li" src="assets/html5.svg" />
+                <img class="css3-li" src="assets/css3.svg" />
+                <img class="js-li" src="assets/js.svg" />
+            </div>
+
+            <section class="about-section">
+                <div class="frameworks-div">
+                    <ul class="textinp about-div opacity-hack">
+                        <li style="list-style: none"><h4>JavaScript frameworks used</h4></li>
+                        <li>jQuery</li>
+                        <li>highlight.js</li>
+                    </ul>
+                </div>
+
+                <div class="contributors-div">
+                    <ul class="textinp about-div opacity-hack">
+                        <li style="list-style: none"><h4>Contributors</h4></li>
+                        <li><a href="https://github.com/dc03">Dhruv</a></li>
+                        <li><a href="https://github.com/kushagra1711">Kushagra</a></li>
+                        <li><a href="https://github.com/NightCrawler07">Prashant</a></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer">
+                <p class="made">Made with ❤ by Dhruv, Kushagra and Prashant</p>
+            </div>
+        </footer>
+
+        <script src="js/hamburger.js"></script>
+    </body>
+</html>
