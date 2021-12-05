@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 	</script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="./css/main.css">
+	<meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="css/common.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap" rel="stylesheet" />
+        <link rel="icon" href="assets/logo.ico" />
+
+        <title>Weatherly</title>
 
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -42,7 +54,52 @@
 	</script>
 </head>
 <body>
-	<div class="col-md-4 col-md-offset-4">
+	 <div class="overlayLister">
+            <button class="hamburgerlogo head jugaad-button" onclick="onk()">asdf</button>
+            <!-- <img src="assets/x.png" onclick="offk()" id="cross" alt="" /> -->
+            <div class="overlayLister2">
+                <ul id="text">
+                    <li>
+                        <h1><a href="login.html">Login</a></h1>
+                    </li>
+                    <li>
+                        <h1><a href="index.html">Home</a></h1>
+                    </li>
+                    <li>
+                        <h1><a href="iframe.html">Weather Map</a></h1>
+                    </li>
+                    <li>
+                        <h1><a href="about.html">About Project</a></h1>
+                    </li>
+                    <li>
+                        <h1><a href="working.html">How it works</a></h1>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <header>
+            <div class="head-div">
+                <div>
+                    <a class="logo-button" href="index.html">
+                        <img class="logo" src="assets/logo.png" alt="" />
+                        <p class="logonames">Weatherly</p>
+                    </a>
+                </div>
+
+                <div>
+                    <img
+                        src="assets/hamburger.png"
+                        align="right"
+                        class="hamburgerlogo head"
+                        id="hamburger"
+                        onclick="onk()"
+                    />
+                </div>
+            </div>
+        </header>
+	<main>
+	<div class="registernow">
 		<div>
 			<p>Login</p>
 		</div>
@@ -58,11 +115,20 @@
 		</div>
 		<div id="LangTable"><a href="/profile" id="aa"></a>
 		</div>
-		<div><span>Do you forgot password?</span><a href="/forgetpass">Click here</a>
-		<div><span>Create a new Account?</span><a href="/">Register here</a>
+		<br>
+		<div><span>Forgot password? <a href="/forgetpass">Click here</a></span>
+			<br><br>
+		<div><span>Create a new Account? <a href="/">Register here</a></span>
 
 		</div>
 		
 	</div>
+	</main>
+	<footer>
+            <div class="footer">
+                <p class="made">Made with ❤ by Dhruv, Kushagra and Prashant</p>
+            </div>
+        </footer>
+     <script src="js/hamburger.js"></script>
 </body>
 </html>

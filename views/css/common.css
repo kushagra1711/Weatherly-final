@@ -96,7 +96,7 @@
     margin-left: 10px;
 }
 
-.logoname {
+.logonames {
     font-family: "Lato", sans-serif;
     display: inline;
     font-size: 2rem;
@@ -243,7 +243,7 @@ li > h1 {
         font-size: 12rem;
         padding-left: 0;
     }
-    .logoname {
+    .logonames {
         vertical-align: 4mm;
     }
     .textinp {
