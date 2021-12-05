@@ -7,18 +7,59 @@
     td {
         text-align: center;
     }*/
-body{
-	text-align: center !important;
+body {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  user-select:none;
 }
-p{
-	margin-top: 20px;
-	font-size: 30px;
+.registernow p {
+  font-size: 2.5rem;
+  padding-top: 5vh;
 }
-input{
-	text-align: center;
+
+.jugaad {
+  height: 5vh;
 }
-.mssg{
-	margin-top: 5px;
-	margin-bottom: 5px;
-	border-radius: 5px;
+form input {
+  text-align: center;
+  margin-top: 3vh;
+  padding: 5px;
+  border-radius: 5px;
+  border:#FF9505 1px solid;
+}
+
+form input:focus,form input::selection,form input:active,form input:focus{
+  border:inherit;
+}
+
+
+main > .registernow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+  text-align: center;
+}
+main > .mssg {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.btn{
+    border:none;
+    border-radius: 10px;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    background-color: #FF9505;
+    color:white;
+}
+
+.btn:hover{
+background-color: var(--yellowish-orange);
+}
+
+span a {
+  color:#86898b
 }
