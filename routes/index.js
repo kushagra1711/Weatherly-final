@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var User = require("../models/user");
 var https = require("https");
+const { pathToFileURL } = require("url");
 
 router.get("/", (req, res, next) => {
     return res.render("index.ejs");
@@ -126,29 +127,34 @@ router.post("/forgetpass", (req, res, next) => {
     });
 });
 
-router.post("/api/getTemp", (req, res, next) => {
+function getTemp(city, callback) {
     const api = {
         key: "cd3c097765ba92903ec783b6cf5bef86",
         base: "api.openweathermap.org",
     };
     const options = {
         hostname: api.base,
-        path: `/data/2.5/weather?q=${req.body.city}&units=metric&APPID=${api.key}`,
+        path: `/data/2.5/weather?q=${city}&units=metric&APPID=${api.key}`,
         method: "GET",
     };
 
     https
-        .request(options, (resp) => {
-            resp.on("data", (d) => {
-                console.log("[INFO] API returned ok");
-                res.header("Content-Type", "application/json");
-                res.send({ data: JSON.parse(d), success: 200 });
-            });
-        })
+        .request(options, callback)
         .on("error", (error) => {
             console.error("[ERROR]" + error);
         })
         .end();
+}
+
+router.post("/api/getTemp", (req, res, next) => {
+    console.log("[INFO] API called");
+    getTemp(req.body.city, (resp) => {
+        resp.on("data", (d) => {
+            console.log("[INFO] API returned ok");
+            res.header("Content-Type", "application/json");
+            res.send({ data: JSON.parse(d) });
+        });
+    });
 });
 
 router.post("/api/storeCity", (req, res, next) => {
@@ -167,11 +173,35 @@ router.post("/api/storeCity", (req, res, next) => {
                     if (err) {
                         console.log(err);
                     } else {
-                        console.log("Success");
+                        console.log("[INFO] Successfully added '" + req.body.city + "'");
                     }
                 });
-                console.log(data.cities);
                 res.end();
+            }
+        });
+    }
+});
+
+router.post("/api/getCity", (req, res, next) => {
+    if (req.session && req.session.userId) {
+        User.findOne({ _id: req.session.userId }, (err, data) => {
+            if (err) {
+                console.log("[ERROR] " + err);
+                return next(err);
+            } else {
+                var cty = data.cities.split("$");
+                var dc = {};
+                for (var i = 0; i < cty.length; i++) {
+                    dc[cty[i].toLocaleLowerCase()] = 1;
+                }
+                var ls = [];
+                for (var key in dc) {
+                    if (key != undefined) {
+                        ls.push(key);
+                    }
+                }
+                console.log(ls);
+                res.send({ cities: ls });
             }
         });
     }
