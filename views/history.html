@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <link rel="stylesheet" href="css/common.css" />
-        <link rel="stylesheet" href="css/afterlogin.css" />
+        <link rel="stylesheet" href="css/history.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
@@ -15,36 +15,35 @@
 
         <title>Weatherly</title>
         <style>
-          .tempplace,.maintemp,.subtemp{
-            text-align: center;
-            font-family: 'Lato';
-
-          }
-          .tempplace{
-            font-size: 3rem;
-            color: var(--bright-blue);
-          }
-          .maintemp{
-            color:var(--blue);
-            font-size: 1.5rem;
-          }
-          .subtemp{
-            color:var(--dark-blue);
-            font-size: 1rem;
-          }
-          .bhay{
-            font-size: 4rem;
-            font-family:'lato' ;
-            text-align: center;
-            vertical-align: baseline;
-          }
-
+            .tempplace,
+            .maintemp,
+            .subtemp {
+                text-align: center;
+                font-family: "Lato";
+            }
+            .tempplace {
+                font-size: 3rem;
+                color: var(--bright-blue);
+            }
+            .maintemp {
+                color: var(--blue);
+                font-size: 1.5rem;
+            }
+            .subtemp {
+                color: var(--dark-blue);
+                font-size: 1rem;
+            }
+            .bhay {
+                font-size: 4rem;
+                font-family: "lato";
+                text-align: center;
+                vertical-align: baseline;
+            }
         </style>
     </head>
     <body>
         <div class="overlayLister">
             <button class="hamburgerlogo head jugaad-button" onclick="onk()">asdf</button>
-            <!-- <img src="assets/x.png" onclick="offk()" id="cross" alt="" /> -->
             <div class="overlayLister2">
                 <ul id="text">
                     <li>
@@ -89,19 +88,19 @@
                 </div>
             </div>
         </header>
-        <br><br>
-            <h3 class="bhay temp">Previous locations you have looked at</h3>
+        <br /><br />
+        <h3 class="bhay temp">Previous locations you have looked at</h3>
 
         <main ng-app="myApp">
             <div class="cards" ng-controller="controllerbhai">
                 <div class="card left" ng-repeat="bruh in header">
                     <h2 class="tempplace">{{bruh.place}}</h2>
-                    <br><br>
+                    <br /><br />
                     <p class="maintemp">{{bruh.data.main.temp}}°c</p>
                     <p class="subtemp">{{bruh.data.main.temp_min}}°c / {{bruh.data.main.temp_max}}°c</p>
                 </div>
                 <div class="card">
-                    <h2 >Temperature Cards.</h2>
+                    <h2>Temperature Cards.</h2>
                     <p>Weatherly shows you the temperature of all the states you enter the data for</p>
                 </div>
             </div>
@@ -125,8 +124,7 @@
                     url: "/api/getCity",
                     dataType: "json",
                     success: (response) => {
-                        var cities = response.cities;
-                        console.log(cities);
+                        const cities = response.cities;
                         for (var i of cities) {
                             $.ajax({
                                 type: "POST",
@@ -134,7 +132,6 @@
                                 data: { city: i },
                                 dataType: "json",
                                 success: (response) => {
-                                    console.log(response.data);
                                     $scope.header.push({ place: response.data.name, data: response.data });
                                     $scope.$apply();
                                 },

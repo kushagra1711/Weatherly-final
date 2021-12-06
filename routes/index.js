@@ -150,7 +150,7 @@ router.post("/api/getTemp", (req, res, next) => {
     console.log("[INFO] API called");
     getTemp(req.body.city, (resp) => {
         resp.on("data", (d) => {
-            console.log("[INFO] API returned ok");
+            console.log("[INFO] API returned weather");
             res.header("Content-Type", "application/json");
             res.send({ data: JSON.parse(d) });
         });

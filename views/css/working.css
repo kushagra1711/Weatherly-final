@@ -11,12 +11,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
-
     font-family: "Lato", sans-serif;
-
     width: 80%;
     height: 80%;
-
     margin-top: 2%;
     margin-left: 10%;
 }

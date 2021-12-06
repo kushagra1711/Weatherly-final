@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
-	
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-	</script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="./css/main.css">
-	<meta charset="UTF-8" />
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="./css/main.css" />
+        <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -20,52 +17,44 @@
 
         <title>Weatherly</title>
 
-	<script type="text/javascript">
-		$(document).ready(function(){
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#form").submit(function (event) {
+                    event.preventDefault();
 
-			$( "#form" ).submit(function(event) {
-				event.preventDefault();
-
-				$.ajax({
-					type: 'POST',
-					url: '/login',
-					data: $('#form').serialize(),
-					dataType: "json",
-					success: function(response){
-						//alert("a");
-						//console.log(response.Success);
-						$('#form')[0].reset();
-
-						document.getElementById("check").innerHTML=response.Success;
-         					//ADD THIS CODE
-         					setTimeout(function(){
-         						document.getElementById("check").innerHTML="";
-         					},3000);
-         					if (response.Success=="Success!") {
-         						document.getElementById("aa").click();
-         					};
-         				},
-         				error: function() {
-         				}
-         			})
-			});
-
-		});
-	</script>
-</head>
-<body>
-	 <div class="overlayLister">
+                    $.ajax({
+                        type: "POST",
+                        url: "/login",
+                        data: $("#form").serialize(),
+                        dataType: "json",
+                        success: function (response) {
+                            $("#form")[0].reset();
+                            document.getElementById("check").innerHTML = response.Success;
+                            setTimeout(function () {
+                                document.getElementById("check").innerHTML = "";
+                            }, 3000);
+                            if (response.Success == "Success!") {
+                                document.getElementById("aa").click();
+                            }
+                        },
+                        error: function () {},
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="overlayLister">
             <button class="hamburgerlogo head jugaad-button" onclick="onk()">asdf</button>
-            <!-- <img src="assets/x.png" onclick="offk()" id="cross" alt="" /> -->
             <div class="overlayLister2">
                 <ul id="text">
                     <li>
-                        <h1><a href="\login">Login</a></h1>
+                        <h1><a href="/login">Login</a></h1>
                     </li>
                     <li>
-                        <h1><a href="\profile">Home</a></h1>
+                        <h1><a href="/profile">Home</a></h1>
                     </li>
-					<li>
+                    <li>
                         <h1><a href="history.html">History</a></h1>
                     </li>
                     <li>
@@ -101,37 +90,43 @@
                 </div>
             </div>
         </header>
-	<main>
-	<div class="registernow">
-		<div>
-			<p>Login</p>
-		</div>
-		<div class="form-group">
-			<form id="form" method="post" >
-				<input type="text" name="email" placeholder="E-mail" required="" class="form-control"><br/>
-				<input type="password" name="password" placeholder="Password" required="" class="form-control"><br/>
-				<input type="submit" value="Login" class="btn btn-success">
-			</form>
-		</div>
-		<div class="mssg bg-danger">
-			<span id="check" ></span>
-		</div>
-		<div id="LangTable"><a href="/profile" id="aa"></a>
-		</div>
-		<br>
-		<div><span>Forgot password? <a href="/forgetpass">Click here</a></span>
-			<br><br>
-		<div><span>Create a new Account? <a href="/">Register here</a></span>
-
-		</div>
-		
-	</div>
-	</main>
-	<footer>
+        <main>
+            <div class="registernow">
+                <div>
+                    <p>Login</p>
+                </div>
+                <div class="form-group">
+                    <form id="form" method="post">
+                        <input type="text" name="email" placeholder="E-mail" required="" class="form-control" /><br />
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            required=""
+                            class="form-control"
+                        /><br />
+                        <input type="submit" value="Login" class="btn btn-success" />
+                    </form>
+                </div>
+                <div class="mssg bg-danger">
+                    <span id="check"></span>
+                </div>
+                <div id="LangTable"><a href="/profile" id="aa"></a></div>
+                <br />
+                <div>
+                    <span>Forgot password? <a href="/forgetpass">Click here</a></span>
+                </div>
+                <br /><br />
+                <div>
+                    <span>Create a new Account? <a href="/">Register here</a></span>
+                </div>
+            </div>
+        </main>
+        <footer>
             <div class="footer">
                 <p class="made">Made with ❤ by Dhruv, Kushagra and Prashant</p>
             </div>
         </footer>
-     <script src="js/hamburger.js"></script>
-</body>
+        <script src="js/hamburger.js"></script>
+    </body>
 </html>

@@ -3,10 +3,7 @@
 .about-cont {
     display: block;
     text-align: center;
-
     font-family: "Lato", sans-serif;
-
-    /* padding: 20px 10% 20px 10%; */
     margin-top: 5%;
     margin-left: 5%;
     margin-right: 5%;
@@ -25,18 +22,14 @@
 
 .html5-li {
     width: 10%;
-
     opacity: 80%;
-
     padding-top: 2%;
     padding-right: 5%;
 }
 
 .css3-li {
     width: 10%;
-
     opacity: 80%;
-
     padding-top: 2%;
     padding-left: 5%;
     padding-right: 5%;
@@ -44,9 +37,7 @@
 
 .js-li {
     width: 10%;
-
     opacity: 80%;
-
     padding-top: 2%;
     padding-left: 5%;
 }
@@ -62,7 +53,6 @@
 
 .frameworks-div {
     padding-top: 2%;
-    
     display: block;
     text-align: left;
 }

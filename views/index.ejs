@@ -1,166 +1,143 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    /> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="./css/main.css" />
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="./css/main.css" />
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="css/common.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="assets/logo.ico" />
+        <link rel="stylesheet" href="css/common.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap" rel="stylesheet" />
+        <link rel="icon" href="assets/logo.ico" />
 
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $("#form1").submit(function (event) {
-          event.preventDefault();
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#form1").submit(function (event) {
+                    event.preventDefault();
 
-          $.ajax({
-            type: "POST",
-            url: "/",
-            data: $("#form1").serialize(),
-            dataType: "json",
-            success: function (response) {
-              //alert("a");
-              //console.log(response.Success);
-              $("#form1")[0].reset();
-
-              document.getElementById("check").innerHTML = response.Success;
-              //ADD THIS CODE
-              setTimeout(function () {
-                document.getElementById("check").innerHTML = "";
-              }, 3000);
-              if (response.Success == "You are regestered,You can login now.") {
-                document.getElementById("aa").click();
-              }
-            },
-            error: function () {},
-          });
-        });
-      });
-    </script>
-    <style></style>
-  </head>
-  <body>
-    <div class="overlayLister">
-      <button class="hamburgerlogo head jugaad-button" onclick="onk()">
-        asdf
-      </button>
-      <!-- <img src="assets/x.png" onclick="offk()" id="cross" alt="" /> -->
-      <div class="overlayLister2">
-        <ul id="text">
-          <li>
-            <h1><a href="login.html">Login</a></h1>
-          </li>
-          <li>
-            <h1><a href="index.html">Home</a></h1>
-          </li>
-          <li>
-            <h1><a href="history.html">History</a></h1>
-          </li>
-          <li>
-            <h1><a href="iframe.html">Weather Map</a></h1>
-          </li>
-          <li>
-            <h1><a href="about.html">About Project</a></h1>
-          </li>
-          <li>
-            <h1><a href="working.html">How it works</a></h1>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <header>
-      <div class="head-div">
-        <div>
-          <a class="logo-button" href="index.html">
-            <img class="logo" src="assets/logo.png" />
-            <p class="logonames">Weatherly</p>
-          </a>
+                    $.ajax({
+                        type: "POST",
+                        url: "/",
+                        data: $("#form1").serialize(),
+                        dataType: "json",
+                        success: function (response) {
+                            $("#form1")[0].reset();
+                            document.getElementById("check").innerHTML = response.Success;
+                            setTimeout(function () {
+                                document.getElementById("check").innerHTML = "";
+                            }, 3000);
+                            if (response.Success == "You are regestered,You can login now.") {
+                                document.getElementById("aa").click();
+                            }
+                        },
+                        error: function () {},
+                    });
+                });
+            });
+        </script>
+        <style></style>
+    </head>
+    <body>
+        <div class="overlayLister">
+            <button class="hamburgerlogo head jugaad-button" onclick="onk()">asdf</button>
+            <div class="overlayLister2">
+                <ul id="text">
+                    <li>
+                        <h1><a href="/login">Login</a></h1>
+                    </li>
+                    <li>
+                        <h1><a href="/profile">Home</a></h1>
+                    </li>
+                    <li>
+                        <h1><a href="history.html">History</a></h1>
+                    </li>
+                    <li>
+                        <h1><a href="iframe.html">Weather Map</a></h1>
+                    </li>
+                    <li>
+                        <h1><a href="about.html">About Project</a></h1>
+                    </li>
+                    <li>
+                        <h1><a href="working.html">How it works</a></h1>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <div>
-          <img
-            src="assets/hamburger.png"
-            align="right"
-            class="hamburgerlogo head"
-            id="hamburger"
-            onclick="onk()"
-          />
-        </div>
-      </div>
-    </header>
+        <header>
+            <div class="head-div">
+                <div>
+                    <a class="logo-button" href="index.html">
+                        <img class="logo" src="assets/logo.png" />
+                        <p class="logonames">Weatherly</p>
+                    </a>
+                </div>
 
-    <main>
-      <div class="registernow">
-        <div>
-          <p>Register Now</p>
-        </div>
-        <div class="form-group">
-          <form id="form1" method="post">
-            <input
-              type="email"
-              name="email"
-              placeholder="E-mail"
-              required=""
-              class="form-control"
-            /><br />
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              required=""
-              class="form-control"
-            /><br />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              required=""
-              class="form-control"
-            /><br />
-            <input
-              type="password"
-              name="passwordConf"
-              placeholder="Confirm Password"
-              required=""
-              class="form-control"
-            /><br />
-            <input type="submit" value="Register" class="btn" />
-          </form>
-        </div>
+                <div>
+                    <img
+                        src="assets/hamburger.png"
+                        align="right"
+                        class="hamburgerlogo head"
+                        id="hamburger"
+                        onclick="onk()"
+                    />
+                </div>
+            </div>
+        </header>
 
-        <div class="mssg bg-danger">
-          <span id="check"></span>
-        </div>
-        <div class="jugaad"></div>
-        <div>
-          <span>Already Registered! <a href="/login">Login</a></span>
-        </div>
-        <div id="LangTable"><a href="/login" id="aa"></a></div>
-      </div>
-    </main>
-    <footer>
-      <div class="footer">
-        <p class="made">Made with ❤ by Dhruv, Kushagra and Prashant</p>
-      </div>
-    </footer>
-    <script src="js/hamburger.js"></script>
-  </body>
+        <main>
+            <div class="registernow">
+                <div>
+                    <p>Register Now</p>
+                </div>
+                <div class="form-group">
+                    <form id="form1" method="post">
+                        <input type="email" name="email" placeholder="E-mail" required="" class="form-control" /><br />
+                        <input
+                            type="text"
+                            name="username"
+                            placeholder="Username"
+                            required=""
+                            class="form-control"
+                        /><br />
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            required=""
+                            class="form-control"
+                        /><br />
+                        <input
+                            type="password"
+                            name="passwordConf"
+                            placeholder="Confirm Password"
+                            required=""
+                            class="form-control"
+                        /><br />
+                        <input type="submit" value="Register" class="btn" />
+                    </form>
+                </div>
+
+                <div class="mssg bg-danger">
+                    <span id="check"></span>
+                </div>
+                <div class="jugaad"></div>
+                <div>
+                    <span>Already Registered! <a href="/login">Login</a></span>
+                </div>
+                <div id="LangTable"><a href="/login" id="aa"></a></div>
+            </div>
+        </main>
+        <footer>
+            <div class="footer">
+                <p class="made">Made with ❤ by Dhruv, Kushagra and Prashant</p>
+            </div>
+        </footer>
+        <script src="js/hamburger.js"></script>
+    </body>
 </html>

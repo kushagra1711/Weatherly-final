@@ -2,15 +2,7 @@
 
 * {
     margin: 0px;
-    /* background-image: -moz-linear-gradient(to bottom,#02c39a ,#F0F3BD); */
 }
-
-/* body{
-    background-image: url('background.png');
-    background-size: 100%;
-    align-items: center;
-    background-repeat: no-repeat;   
-} */
 
 :root {
     --background: #ffffff;
@@ -65,12 +57,12 @@
 }
 
 .overlay h1 {
-    position:absolute;
+    position: absolute;
     text-align: center;
     color: var(--background);
     font-size: 7rem;
     top: 30%;
-    left:18%;
+    left: 18%;
     font-family: "Helvetica";
     letter-spacing: 4px;
     animation: zoomIn 3s ease infinite;
@@ -196,7 +188,7 @@
 
 #text {
     position: absolute;
-    
+
     top: 50%;
     left: 40%;
     font-size: 1.5rem;
@@ -220,10 +212,9 @@ li > h1 {
     padding-bottom: 20px;
 }
 
-
 @media screen and (max-width: 995px) {
-    #text{
-        font-size:1rem;
+    #text {
+        font-size: 1rem;
     }
 }
 

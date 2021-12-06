@@ -1,65 +1,58 @@
-/*body,
- table,
-    thead,
-    tr,
-    tbody,
-    th,
-    td {
-        text-align: center;
-    }*/
 body {
-  text-align: center;
-  font-family: 'Lato', sans-serif;
-  user-select:none;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    user-select: none;
 }
 .registernow p {
-  font-size: 2.5rem;
-  padding-top: 5vh;
+    font-size: 2.5rem;
+    padding-top: 5vh;
 }
 
 .jugaad {
-  height: 5vh;
+    height: 5vh;
 }
 form input {
-  text-align: center;
-  margin-top: 3vh;
-  padding: 5px;
-  border-radius: 5px;
-  border:#FF9505 1px solid;
+    text-align: center;
+    margin-top: 3vh;
+    padding: 5px;
+    border-radius: 5px;
+    border: #ff9505 1px solid;
 }
 
-form input:focus,form input::selection,form input:active,form input:focus{
-  border:inherit;
+form input:focus,
+form input::selection,
+form input:active,
+form input:focus {
+    border: inherit;
 }
-
 
 main > .registernow {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  vertical-align: middle;
-  justify-content: center;
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    justify-content: center;
+    text-align: center;
 }
 main > .mssg {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
 }
 
-.btn{
-    border:none;
+.btn {
+    border: none;
     border-radius: 10px;
     padding-left: 2vh;
     padding-right: 2vh;
-    background-color: #FF9505;
-    color:white;
+    background-color: #ff9505;
+    color: white;
 }
 
-.btn:hover{
-background-color: var(--yellowish-orange);
+.btn:hover {
+    background-color: var(--yellowish-orange);
 }
 
 span a {
-  color:#86898b
+    color: #86898b;
 }
