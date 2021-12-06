@@ -138,17 +138,21 @@ function getTemp(city, callback) {
         method: "GET",
     };
 
-    return https.request(options, callback).on("error", (error) => {
-        console.error("[ERROR]" + error);
-    });
+    https
+        .request(options, callback)
+        .on("error", (error) => {
+            console.error("[ERROR]" + error);
+        })
+        .end();
 }
 
 router.post("/api/getTemp", (req, res, next) => {
+    console.log("[INFO] API called");
     getTemp(req.body.city, (resp) => {
         resp.on("data", (d) => {
             console.log("[INFO] API returned ok");
             res.header("Content-Type", "application/json");
-            res.send({ data: JSON.parse(d), success: 200 });
+            res.send({ data: JSON.parse(d) });
         });
     });
 });
@@ -173,6 +177,31 @@ router.post("/api/storeCity", (req, res, next) => {
                     }
                 });
                 res.end();
+            }
+        });
+    }
+});
+
+router.post("/api/getCity", (req, res, next) => {
+    if (req.session && req.session.userId) {
+        User.findOne({ _id: req.session.userId }, (err, data) => {
+            if (err) {
+                console.log("[ERROR] " + err);
+                return next(err);
+            } else {
+                var cty = data.cities.split("$");
+                var dc = {};
+                for (var i = 0; i < cty.length; i++) {
+                    dc[cty[i].toLocaleLowerCase()] = 1;
+                }
+                var ls = [];
+                for (var key in dc) {
+                    if (key != undefined) {
+                        ls.push(key);
+                    }
+                }
+                console.log(ls);
+                res.send({ cities: ls });
             }
         });
     }
