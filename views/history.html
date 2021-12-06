@@ -14,6 +14,32 @@
         <link rel="icon" href="assets/logo.ico" />
 
         <title>Weatherly</title>
+        <style>
+          .tempplace,.maintemp,.subtemp{
+            text-align: center;
+            font-family: 'Lato';
+
+          }
+          .tempplace{
+            font-size: 3rem;
+            color: var(--bright-blue);
+          }
+          .maintemp{
+            color:var(--blue);
+            font-size: 1.5rem;
+          }
+          .subtemp{
+            color:var(--dark-blue);
+            font-size: 1rem;
+          }
+          .bhay{
+            font-size: 4rem;
+            font-family:'lato' ;
+            text-align: center;
+            vertical-align: baseline;
+          }
+
+        </style>
     </head>
     <body>
         <div class="overlayLister">
@@ -22,10 +48,13 @@
             <div class="overlayLister2">
                 <ul id="text">
                     <li>
-                        <h1><a href="login.html">Login</a></h1>
+                        <h1><a href="\login">Login</a></h1>
                     </li>
                     <li>
-                        <h1><a href="index.html">Home</a></h1>
+                        <h1><a href="\profile">Home</a></h1>
+                    </li>
+                    <li>
+                        <h1><a href="history.html">History</a></h1>
                     </li>
                     <li>
                         <h1><a href="iframe.html">Weather Map</a></h1>
@@ -43,7 +72,7 @@
         <header>
             <div class="head-div">
                 <div>
-                    <a class="logo-button" href="index.html">
+                    <a class="logo-button" href="/profile">
                         <img class="logo" src="assets/logo.png" alt="" />
                         <p class="logonames">Weatherly</p>
                     </a>
@@ -60,16 +89,20 @@
                 </div>
             </div>
         </header>
+        <br><br>
+            <h3 class="bhay temp">Previous locations you have looked at</h3>
 
         <main ng-app="myApp">
             <div class="cards" ng-controller="controllerbhai">
                 <div class="card left" ng-repeat="bruh in header">
-                    <h2>{{bruh.place}}</h2>
-                    <p>{{bruh.data}}</p>
+                    <h2 class="tempplace">{{bruh.place}}</h2>
+                    <br><br>
+                    <p class="maintemp">{{bruh.data.main.temp}}°c</p>
+                    <p class="subtemp">{{bruh.data.main.temp_min}}°c / {{bruh.data.main.temp_max}}°c</p>
                 </div>
                 <div class="card">
-                    <h2>Temprature Cards.</h2>
-                    <p>Weatherly shows you the Temprature of all the states you enter the data for</p>
+                    <h2 >Temperature Cards.</h2>
+                    <p>Weatherly shows you the temperature of all the states you enter the data for</p>
                 </div>
             </div>
         </main>
