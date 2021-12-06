@@ -1,26 +1,23 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var User = require('../models/user');
+var User = require("../models/user");
+var https = require("https");
 
-router.get('/', (req, res, next) => {
-    return res.render('index.ejs');
+router.get("/", (req, res, next) => {
+    return res.render("index.ejs");
 });
 
-
-router.post('/', (req, res, next) => {
+router.post("/", (req, res, next) => {
     console.log(req.body);
     var personInfo = req.body;
-
 
     if (!personInfo.email || !personInfo.username || !personInfo.password || !personInfo.passwordConf) {
         res.send();
     } else {
         if (personInfo.password == personInfo.passwordConf) {
-
             User.findOne({ email: personInfo.email }, (err, data) => {
                 if (!data) {
                     User.findOne({}, (err, data) => {
-
                         if (data) {
                             console.log("if");
                         } else {
@@ -31,115 +28,129 @@ router.post('/', (req, res, next) => {
                             username: personInfo.username,
                             password: personInfo.password,
                             passwordConf: personInfo.passwordConf,
-                            cities: ""
+                            cities: "",
                         });
 
                         newPerson.save((err, Person) => {
-                            if (err)
-                                console.log(err);
-                            else
-                                console.log('Success');
+                            if (err) console.log(err);
+                            else console.log("Success");
                         });
-
-                    }).sort({ _id: -1 }).limit(1);
-                    res.send({ "Success": "You are regestered,You can login now." });
+                    })
+                        .sort({ _id: -1 })
+                        .limit(1);
+                    res.send({ Success: "You are regestered,You can login now." });
                 } else {
-                    res.send({ "Success": "Email is already used." });
+                    res.send({ Success: "Email is already used." });
                 }
-
             });
         } else {
-            res.send({ "Success": "password is not matched" });
+            res.send({ Success: "password is not matched" });
         }
     }
 });
 
-router.get('/login', (req, res, next) => {
-    return res.render('login.ejs');
+router.get("/login", (req, res, next) => {
+    return res.render("login.ejs");
 });
 
-router.post('/login', (req, res, next) => {
-    //console.log(req.body);
+router.post("/login", (req, res, next) => {
     User.findOne({ email: req.body.email }, (err, data) => {
         if (data) {
-
             if (data.password == req.body.password) {
-                //console.log("Done Login");
                 req.session.userId = data._id;
-                //console.log(req.session.userId);
-                res.send({ "Success": "Success!" });
-
+                res.send({ Success: "Success!" });
             } else {
-                res.send({ "Success": "Wrong password!" });
+                res.send({ Success: "Wrong password!" });
             }
         } else {
-            res.send({ "Success": "This Email Is not regestered!" });
+            res.send({ Success: "This Email Is not regestered!" });
         }
     });
 });
 
-router.get('/profile', (req, res, next) => {
+router.get("/profile", (req, res, next) => {
     console.log("profile");
     User.findOne({ _id: req.session.userId }, (err, data) => {
         console.log("data");
         console.log(data);
         if (!data) {
-            res.redirect('/');
+            res.redirect("/");
         } else {
-            //console.log("found");
-            return res.render('profile.ejs', { "name": data.username, "email": data.email });
+            return res.render("profile.ejs", {
+                name: data.username,
+                email: data.email,
+            });
         }
     });
 });
 
-router.get('/logout', (req, res, next) => {
-    console.log("logout")
+router.get("/logout", (req, res, next) => {
+    console.log("logout");
     if (req.session) {
         // delete session object
         req.session.destroy((err) => {
             if (err) {
                 return next(err);
             } else {
-                return res.redirect('/');
+                return res.redirect("/");
             }
         });
     }
 });
 
-router.get('/forgetpass', (req, res, next) => {
+router.get("/forgetpass", (req, res, next) => {
     res.render("forget.ejs");
 });
 
-router.post('/forgetpass', (req, res, next) => {
-    //console.log('req.body');
-    //console.log(req.body);
+router.post("/forgetpass", (req, res, next) => {
     User.findOne({ email: req.body.email }, (err, data) => {
         console.log(data);
         if (!data) {
-            res.send({ "Success": "This Email Is not regestered!" });
+            res.send({ Success: "This Email Is not regestered!" });
         } else {
-            // res.send({"Success":"Success!"});
             if (req.body.password == req.body.passwordConf) {
                 data.password = req.body.password;
                 data.passwordConf = req.body.passwordConf;
 
                 data.save((err, Person) => {
-                    if (err)
-                        console.log(err);
-                    else
-                        console.log('Success');
-                    res.send({ "Success": "Password changed!" });
+                    if (err) console.log(err);
+                    else console.log("Success");
+                    res.send({ Success: "Password changed!" });
                 });
             } else {
-                res.send({ "Success": "Password does not matched! Both Password should be same." });
+                res.send({
+                    Success: "Password does not matched! Both Password should be same.",
+                });
             }
         }
     });
 });
 
-// router.get("/api/storeData", (req, res, next) => {
+router.post("/api/getTemp", (req, res, next) => {
+    const api = {
+        key: "cd3c097765ba92903ec783b6cf5bef86",
+        base: "api.openweathermap.org",
+    };
+    const options = {
+        hostname: api.base,
+        path: `/data/2.5/weather?q=${req.body.city}&units=metric&APPID=${api.key}`,
+        method: "GET",
+    };
 
-// });
+    https
+        .request(options, (resp) => {
+            resp.on("data", (d) => {
+                console.log("[INFO] API returned ok");
+                res.header("Content-Type", "application/json");
+                res.send({ data: JSON.parse(d), success: 200 });
+            });
+        })
+        .on("error", (error) => {
+            console.error("[ERROR]" + error);
+        })
+        .end();
+});
+
 router.post("/api/storeCity", (req, res, next) => {
     if (req.session && req.session.userId) {
         User.findOne({ _id: req.session.userId }, (err, data) => {
@@ -160,7 +171,7 @@ router.post("/api/storeCity", (req, res, next) => {
                     }
                 });
                 console.log(data.cities);
-                // res.send({ "name": data.username, "email": data.email, "cities": data.cities });
+                res.end();
             }
         });
     }
