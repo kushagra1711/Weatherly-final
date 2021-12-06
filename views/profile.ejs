@@ -54,22 +54,20 @@
                     </a>
                 </div>
 
-                <div class="logonames" style="font-size: 1rem;
-                display: flex;
-                position:absolute;
-                right:80px;
-                top:25px;">
-                    <%= name %>
-                    <%= email %></div>
+                <div
+                    class="logonames"
+                    style="font-size: 1rem; display: flex; position: absolute; right: 80px; top: 25px"
+                >
+                    <%= name %> <%= email %>
+                </div>
 
-                    <img
-                        src="assets/hamburger.png"
-                        align="right"
-                        class="hamburgerlogo head"
-                        id="hamburger"
-                        onclick="onk()"
-                    />
-                
+                <img
+                    src="assets/hamburger.png"
+                    align="right"
+                    class="hamburgerlogo head"
+                    id="hamburger"
+                    onclick="onk()"
+                />
             </div>
         </header>
 
@@ -77,10 +75,8 @@
             <div class="cont" align="center">
                 <div class="input">
                     <!-- <form action="location-input"> -->
-                    <form action="/api/storeCity" method="post">
-                        <input class="textinp textinp-width" type="text" placeholder="  Enter Location..." name="city" />
-                        <button class="submit" onclick="exe()">
-                    </form>
+                    <input class="textinp textinp-width" type="text" placeholder="  Enter Location..." name="city" />
+                    <button class="submit" onclick="exe()">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="22"
@@ -143,47 +139,47 @@
             }
         </script>
         <script>
-            /*let spinnerWrapper = document.getElementById("ov");
-
-            window.addEventListener("load", function () {
-                setTimeout(function () {
-                    spinnerWrapper.style.display = "none";
-                }, 2000);
-            });*/
-        </script>
-        <script>
-            const api = {
-                key: "cd3c097765ba92903ec783b6cf5bef86",
-                base: "https://api.openweathermap.org/data/2.5/",
-            };
-
             const searchbox = document.querySelector(".textinp");
             searchbox.addEventListener("keypress", setQuery);
             document.querySelector(".submit").addEventListener("onclick", setQuery);
 
             function onstart() {
-                console.log(searchbox.value)
-                getResults('Delhi');
+                console.log(searchbox.value);
+                getResults("Delhi");
             }
 
             function exe() {
-                console.log(searchbox.value)
+                console.log(searchbox.value);
                 getResults(searchbox.value);
             }
 
             function setQuery(evt) {
                 if (evt.keyCode == 13) {
                     getResults(searchbox.value);
-                    console.log(searchbox.value)
+                    console.log(searchbox.value);
                 }
             }
 
             function getResults(query) {
-                fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
-                    .then((weather) => {
-                        return weather.json();
-                    })
-                    .then(displayResults);
+                $.ajax({
+                    type: "POST",
+                    url: "/api/getTemp",
+                    data: { city: query },
+                    dataType: "json",
+                    success: (response) => {
+                        displayResults(response.data);
+                    },
+                    error: (xhr) => {
+                        console.log("[ERROR] Could not fetch weather data");
+                    },
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: "/api/storeCity",
+                    data: { city: query },
+                    dataType: "json",
+                });
             }
             function displayResults(weather) {
                 let city = document.querySelector(".location .city");
@@ -207,10 +203,9 @@
 
             function getLocation() {
                 if (navigator.geolocation) {
-                    var x=navigator.geolocation.getCurrentPosition(showPosition);
+                    var x = navigator.geolocation.getCurrentPosition(showPosition);
                     console.log(x);
                     return x;
-
                 }
             }
 
@@ -239,7 +234,6 @@
 
             /*end of geolocation api*/
 
-
             function dateBuilder(d) {
                 let months = [
                     "January",
@@ -265,14 +259,13 @@
                 return `${day} ${date} ${month} ${year}`;
             }
 
-            function callfunction()
-            {
-                const qq=`<form action="/" method="post">
+            function callfunction() {
+                const qq = `<form action="/" method="post">
                             <input type="email" class="email" name="uid" placeholder="email">
                             <input type="password" class="pass" name="pass" placeholder="pass">
                             <button type="submit" class"submit" name="submit">Submit</button>
-                          </form>`
-                document.getElementsByClassName("overlayLister2")[0].innerHTML=qq;
+                          </form>`;
+                document.getElementsByClassName("overlayLister2")[0].innerHTML = qq;
             }
         </script>
         <script src="js/hamburger.js"></script>
